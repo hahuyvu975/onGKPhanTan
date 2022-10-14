@@ -1,0 +1,47 @@
+package onGK.main;
+
+import onGK.dao.KhachHangDao;
+import onGK.entity.BusinessAddress;
+import onGK.entity.HomeAddress;
+import onGK.entity.KhachHang;
+
+public class MainTest {
+
+	public static void main(String[] args) throws NoSuchFieldException {
+		KhachHangDao dao = new KhachHangDao();
+		
+		//cau a
+//		HomeAddress homeAddress = new HomeAddress();
+//		homeAddress.setStreet("Nguyen Van Bao");
+//		homeAddress.setCity("HCM");
+//		homeAddress.setZipcode(95046);
+//		
+//		BusinessAddress businessAddress = new BusinessAddress();
+//		businessAddress.setStreet("Nguyen Van Nghi");
+//		businessAddress.setCity("HCM");
+//		businessAddress.setZipcode(95141);
+//		
+//		KhachHang khachHang = new KhachHang();
+//		khachHang.setCustomerID("112233445");
+//		khachHang.setName("Hoang Phat");
+//		khachHang.setAge(22);
+//		khachHang.setEmail("hoangphat2k2@gmail.com");
+//		khachHang.setPhone("0901356975");
+//		khachHang.setHomeAddress(homeAddress);
+//		khachHang.setBusinessAddress(businessAddress);
+//		
+//		dao.addCustomer(khachHang);
+		
+		// cau b
+//		dao.printByCustomerID("112233445");
+		
+		// cau c
+		dao.getCustomer(19, 26);
+		
+		// cau d
+//		dao.getDeleteCustomer("123456789");
+		
+		// cau e
+//		dao.updateCustomerEmail("112233445", "hahuyvu975@gmail.com");
+	}
+}

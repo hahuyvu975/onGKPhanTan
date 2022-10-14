@@ -1,0 +1,6 @@
+INDEX VERSION 1.131+C:\Users\ASUS\Desktop\testPhanTan\.metadata\.plugins\org.eclipse.jdt.core
+43264123.index
+1865797976.index
+2682323781.index
+2868040635.index
+1157338482.index

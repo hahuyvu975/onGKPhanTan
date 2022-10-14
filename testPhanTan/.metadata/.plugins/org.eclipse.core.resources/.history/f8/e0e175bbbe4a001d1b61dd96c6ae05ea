@@ -1,0 +1,5 @@
+package onGK.dao;
+
+public interface KhachHangDao {
+
+}

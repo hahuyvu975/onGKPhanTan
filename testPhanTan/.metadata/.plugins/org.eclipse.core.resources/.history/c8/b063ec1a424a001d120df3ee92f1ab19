@@ -1,0 +1,36 @@
+package onGK.main;
+
+import onGK.dao.KhachHangDao;
+import onGK.entity.BusinessAddress;
+import onGK.entity.HomeAddress;
+import onGK.entity.KhachHang;
+
+public class MainTest {
+
+	public static void main(String[] args) {
+		KhachHangDao dao = new KhachHangDao();
+		
+		//cau a
+		HomeAddress homeAddress = new HomeAddress();
+		homeAddress.setStreet("Sycamore Avenue");
+		homeAddress.setCity("Gilroy");
+		homeAddress.setZipcode(95046);
+		
+		BusinessAddress businessAddress = new BusinessAddress();
+		businessAddress.setStreet("Bailey Avenue");
+		businessAddress.setCity("San Jose");
+		businessAddress.setZipcode(95141);
+		
+		KhachHang khachHang = new KhachHang();
+		khachHang.setCustomerID("123456789");
+		khachHang.setName("Joe");
+		khachHang.setAge(25);
+		khachHang.setEmail("joe123@gmail.com");
+		khachHang.setPhone("555-666-7777");
+		khachHang.setHomeAddress(homeAddress);
+		khachHang.setBusinessAddress(businessAddress);
+		
+		dao.addCustomer(khachHang);
+	}
+
+}

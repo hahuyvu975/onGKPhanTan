@@ -1,0 +1,66 @@
+package onGK.dao;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.bson.Document;
+
+import onGK.connect.Connect;
+import onGK.entity.BusinessAddress;
+import onGK.entity.HomeAddress;
+import onGK.entity.KhachHang;
+
+public class KhachHangDao {
+	
+	public boolean addCustomer(KhachHang kh) {
+		Connect connect = new Connect();
+		connect.db().getCollection("khachHang").insertOne(toDocument(kh));
+		return true;
+	}
+	private Document toDocument(KhachHang kh) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("_id", kh.getCustomerID());
+		map.put("name", kh.getName());
+		map.put("age", kh.getAge());
+		map.put("email", kh.getEmail());
+		map.put("phone", kh.getPhone());
+		map.put("homeAddress",
+				new Document("street", kh.getHomeAddress().getStreet())
+				.append("city", kh.getHomeAddress().getCity())
+				.append("zipcode", kh.getHomeAddress().getZipcode()));
+		map.put("businessAddress",
+				new Document("Street", kh.getBusinessAddress().getStreet())
+				.append("City", kh.getBusinessAddress().getCity())
+				.append("zipcode", kh.getBusinessAddress().getZipcode()));
+		Document doc = new Document(map);
+		return doc;
+	}
+	private KhachHang fromDocument(Document document) throws NoSuchFieldException{
+		KhachHang kh = new KhachHang();
+		HomeAddress ha = new HomeAddress();
+		BusinessAddress ba = new BusinessAddress();
+		kh.setCustomerID(document.getString("_id"));
+		kh.setName(document.getString("name"));
+		kh.setAge(document.getInteger("age"));
+		kh.setEmail(document.getString("email"));
+		kh.setPhone(document.getString("phone"));
+		
+		Document document2 = (Document) document.get("homeAddress");
+		ha.setStreet(document2.getString("street"));
+		ha.setCity(document2.getString("city"));
+		ha.setZipcode(document2.getInteger("zipcode"));
+		kh.setHomeAddress(ha);
+		
+		Document document3 = (Document) document.get("businessAddress");
+		ha.setStreet(document2.getString("Street"));
+		ha.setCity(document2.getString("City"));
+		ha.setZipcode(document2.getInteger("zipcode"));
+		kh.setBusinessAddress(ba);
+		
+		System.out.println(kh.toString());
+		
+		
+		return kh;
+	}
+	 
+}

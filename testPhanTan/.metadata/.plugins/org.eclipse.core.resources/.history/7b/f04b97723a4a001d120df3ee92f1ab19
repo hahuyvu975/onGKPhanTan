@@ -1,0 +1,9 @@
+package onGK.entity;
+
+public class KhachHang {
+	private String customerID;
+	private String name;
+	private int age;
+	private String email;
+	private String phone;
+}

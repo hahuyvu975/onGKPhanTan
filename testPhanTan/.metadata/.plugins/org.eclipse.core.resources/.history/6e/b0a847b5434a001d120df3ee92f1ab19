@@ -1,0 +1,37 @@
+package onGK.dao;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.bson.Document;
+
+import onGK.connect.Connect;
+import onGK.entity.KhachHang;
+
+public class KhachHangDao {
+	
+	public boolean addCustomer(KhachHang kh) {
+		Connect connect = new Connect();
+		connect.db().getCollection("khachHang").insertOne(toDocument(kh));
+		return true;
+	}
+	private Document toDocument(KhachHang kh) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("_id", kh.getCustomerID());
+		map.put("name", kh.getName());
+		map.put("age", kh.getAge());
+		map.put("email", kh.getEmail());
+		map.put("phone", kh.getPhone());
+		map.put("homeAddress",
+				new Document("street", kh.getHomeAddress().getStreet())
+				.append("city", kh.getHomeAddress().getCity())
+				.append("zipcode", kh.getHomeAddress().getZipcode()));
+		map.put("businessAddress",
+				new Document("Street", kh.getBusinessAddress().getStreet())
+				.append("City", kh.getBusinessAddress().getCity())
+				.append("zipcode", kh.getBusinessAddress().getZipcode()));
+		Document doc = new Document(map);
+		return doc;
+	}
+	 
+}
